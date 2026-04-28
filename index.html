@@ -4,164 +4,742 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Money Vichara — Vishweshwar Mensumane</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<meta name="description" content="Finance educator, tool builder & blogger. Interactive simulations, finance games, and 65+ articles making personal finance intuitive.">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0f0f0f;--ink-soft:#454540;--ink-mute:#90908a;--surface:#fff;--surface-2:#f7f6f1;--surface-3:#edeae2;--accent:#e8500a;--accent-2:#1a6b4a;--accent-3:#1a3a8f;--accent-4:#8b1a6b;--gold:#b87a08;--border:#e0dbd0;--r:14px;--rs:8px;}
-*{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'DM Sans',sans-serif;background:var(--surface-2);color:var(--ink);font-size:15px;line-height:1.65;}
-h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;}
-a{color:inherit;}
-.topbar{background:var(--ink);color:#fff;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100;gap:1rem;}
-.topbar-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:17px;color:#fff;text-decoration:none;white-space:nowrap;}
-.topbar-brand span{color:var(--accent);}
-.nav{display:flex;overflow-x:auto;scrollbar-width:none;}
-.nav::-webkit-scrollbar{display:none;}
-.nav-btn{background:none;border:none;color:rgba(255,255,255,.55);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:0 13px;height:54px;cursor:pointer;transition:color .2s;white-space:nowrap;}
-.nav-btn:hover{color:#fff;}
-.nav-btn.active{color:#fff;border-bottom:2.5px solid var(--accent);}
-.hero{background:var(--ink);color:#fff;padding:4rem 2rem 3.5rem;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,80,10,.15) 0%,transparent 65%);pointer-events:none;}
-.hero::after{content:'';position:absolute;bottom:-60px;left:25%;width:350px;height:350px;background:radial-gradient(circle,rgba(26,106,74,.1) 0%,transparent 65%);pointer-events:none;}
-.hero-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;}
-.hero-eyebrow::before{content:'';display:inline-block;width:22px;height:2px;background:var(--accent);}
-.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:.5rem;}
-.hero-sub{font-size:14px;color:rgba(255,255,255,.5);font-weight:300;letter-spacing:.4px;margin-bottom:1.4rem;}
-.hero-bio{font-size:15.5px;color:rgba(255,255,255,.76);max-width:580px;line-height:1.75;margin-bottom:2rem;}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
-.btn-primary{background:var(--accent);color:#fff;border:none;padding:10px 22px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:opacity .2s,transform .15s;}
-.btn-primary:hover{opacity:.85;transform:translateY(-1px);}
-.btn-ghost{background:rgba(255,255,255,.07);color:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.14);padding:10px 18px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background .2s;}
-.btn-ghost:hover{background:rgba(255,255,255,.14);}
-.social-row{display:flex;gap:8px;margin-top:2rem;flex-wrap:wrap;}
-.social-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.68);padding:6px 14px;border-radius:40px;font-size:12px;text-decoration:none;transition:background .2s,color .2s;}
-.social-chip:hover{background:rgba(255,255,255,.15);color:#fff;}
-.main{max-width:1020px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
-.tab-panel{display:none;}
-.tab-panel.active{display:block;animation:fi .3s ease;}
-@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.sh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.4rem;padding-bottom:.7rem;border-bottom:1.5px solid var(--border);}
-.st{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:9px;}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block;flex-shrink:0;}
-.sl{font-size:12.5px;color:var(--accent);text-decoration:none;font-weight:500;}
-.sl:hover{text-decoration:underline;}
-.sb{margin-bottom:3rem;}
-.wn{background:linear-gradient(135deg,#fff9f6,#f2f9f5);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--rs);padding:1rem 1.25rem;margin-bottom:2.5rem;}
-.wn-label{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;}
-.ni{display:flex;align-items:baseline;gap:10px;padding:5px 0;border-bottom:1px dashed var(--border);}
-.ni:last-child{border-bottom:none;}
-.nd{font-size:11px;color:var(--ink-mute);white-space:nowrap;min-width:66px;}
-.nt{font-size:13.5px;color:var(--ink-soft);}
-.nt a{color:var(--accent);text-decoration:none;font-weight:500;}
-.nt a:hover{text-decoration:underline;}
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:2rem;}
-.tc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;display:flex;flex-direction:column;transition:box-shadow .2s,transform .15s;position:relative;overflow:hidden;}
-.tc:hover{box-shadow:0 8px 28px rgba(0,0,0,.09);transform:translateY(-2px);}
-.tc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
-.ca::before{background:var(--accent);}
-.cb::before{background:var(--accent-2);}
-.cc::before{background:var(--accent-3);}
-.cd::before{background:var(--accent-4);}
-.ce::before{background:var(--gold);}
-.ctags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:.7rem;}
-.tag{font-size:10px;font-weight:700;letter-spacing:.5px;padding:3px 9px;border-radius:20px;text-transform:uppercase;}
-.ta{background:#fff0eb;color:#b03a06;}
-.tb{background:#eaf5f0;color:#0f6e3a;}
-.tc2{background:#eaeffb;color:#1a3a8f;}
-.td{background:#f5eaf5;color:#6b1a5b;}
-.te{background:#fdf4e3;color:#8b5a06;}
-.cn{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.25rem;color:var(--ink);}
-.ctag{font-size:12px;color:var(--ink-mute);font-style:italic;margin-bottom:.7rem;}
-.cd2{font-size:13.5px;color:var(--ink-soft);line-height:1.65;flex:1;}
-.cd2.sh2{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-.cf{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--border);}
-.cm{font-size:12px;color:var(--ink-mute);background:none;border:none;cursor:pointer;padding:0;font-family:'DM Sans',sans-serif;transition:color .15s;}
-.cm:hover{color:var(--accent);}
-.cl2{display:inline-flex;align-items:center;gap:5px;background:var(--ink);color:#fff;padding:7px 16px;border-radius:6px;font-size:12.5px;font-weight:500;text-decoration:none;transition:background .2s;}
-.cl2:hover{background:var(--accent);}
-.bg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;}
-.bc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s,transform .15s;display:flex;flex-direction:column;}
-.bc:hover{box-shadow:0 8px 28px rgba(0,0,0,.09);transform:translateY(-2px);}
-.bt{width:100%;height:148px;object-fit:cover;display:block;background:var(--surface-3);}
-.bp{width:100%;height:148px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:rgba(0,0,0,.07);background:linear-gradient(135deg,#f5f1ea,#ece7de);}
-.bb{padding:1.1rem;flex:1;display:flex;flex-direction:column;}
-.bdate{font-size:11px;color:var(--ink-mute);margin-bottom:.35rem;}
-.btitle{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:.45rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.bex{font-size:12.5px;color:var(--ink-soft);line-height:1.6;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-.br{display:inline-flex;align-items:center;gap:4px;margin-top:.8rem;font-size:12px;font-weight:500;color:var(--accent);text-decoration:none;}
-.br:hover{text-decoration:underline;}
-.bload,.bempty{text-align:center;padding:3rem 1rem;color:var(--ink-mute);font-size:13.5px;grid-column:1/-1;}
-.spin{width:30px;height:30px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 1rem;}
-@keyframes sp{to{transform:rotate(360deg)}}
-.al{display:grid;grid-template-columns:1fr 290px;gap:2rem;align-items:start;}
-.al h2{font-size:1.6rem;font-weight:800;margin-bottom:1rem;line-height:1.2;}
-.al h2 span{color:var(--accent);}
-.al p{font-size:15px;color:var(--ink-soft);line-height:1.75;margin-bottom:1rem;}
-.aside{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;}
-.aside h4{font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-mute);margin-bottom:1rem;}
-.cri{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:1px solid var(--surface-3);font-size:13px;color:var(--ink-soft);}
-.cri:last-child{border-bottom:none;}
-.ctblock{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;margin-top:1.5rem;}
-.ctblock h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1rem;}
-.ctlnk{display:flex;align-items:center;gap:10px;color:var(--ink-soft);text-decoration:none;font-size:13.5px;padding:8px 12px;border-radius:var(--rs);border:1px solid var(--border);transition:border-color .2s,background .2s;margin-bottom:8px;}
-.ctlnk:last-child{margin-bottom:0;}
-.ctlnk:hover{border-color:var(--accent);background:#fff9f6;color:var(--ink);}
-.cico{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0;}
-.empty{text-align:center;padding:3rem 1rem;color:var(--ink-mute);background:var(--surface);border:1px dashed var(--border);border-radius:var(--r);font-size:13.5px;}
-.empty strong{display:block;font-family:'Syne',sans-serif;font-size:1rem;margin-bottom:.4rem;color:var(--ink-soft);}
-.adm-login{max-width:380px;margin:3rem auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:2rem;}
-.adm-login h3{font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;text-align:center;}
-.fg{margin-bottom:1rem;}
-.fg label{display:block;font-size:12.5px;font-weight:500;color:var(--ink-soft);margin-bottom:.4rem;}
-.fg input,.fg select,.fg textarea{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--ink);background:var(--surface);outline:none;transition:border-color .2s;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent);}
-.fg textarea{min-height:90px;resize:vertical;}
-.adas{display:flex;gap:8px;flex-wrap:wrap;}
-.bsv{background:var(--accent-2);color:#fff;border:none;padding:9px 20px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:opacity .2s;}
-.bsv:hover{opacity:.85;}
-.bcl{background:var(--surface-3);color:var(--ink-soft);border:1px solid var(--border);padding:9px 18px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;}
-.asec{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem;}
-.asec h3{font-size:1rem;font-weight:700;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:space-between;}
-.badd{background:var(--ink);color:#fff;border:none;padding:7px 16px;border-radius:6px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
-.badd:hover{background:var(--accent);}
-.alist{display:flex;flex-direction:column;gap:8px;}
-.aitm{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:var(--surface-2);border-radius:var(--rs);border:1px solid var(--border);font-size:13px;}
-.aiact{display:flex;gap:6px;}
-.btg{font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid var(--border);cursor:pointer;font-family:'DM Sans',sans-serif;background:var(--surface);}
-.bdl{font-size:11px;padding:4px 10px;border-radius:4px;border:1px solid #fcc;cursor:pointer;font-family:'DM Sans',sans-serif;background:#fff5f5;color:#c00;}
-.amsg{text-align:center;padding:.75rem;border-radius:var(--rs);font-size:13px;margin-top:1rem;}
-.aok{background:#eaf5f0;color:#0f6e3a;}
-.aer{background:#fef0ed;color:#b83d06;}
-.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:flex;align-items:center;justify-content:center;padding:1rem;}
-.modal{background:var(--surface);border-radius:var(--r);padding:1.75rem;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;}
-.modal h3{font-size:1.1rem;font-weight:700;margin-bottom:1.2rem;}
-.hidden{display:none!important;}
-.footer{background:var(--ink);color:rgba(255,255,255,.38);text-align:center;padding:1.5rem;font-size:12px;}
-.footer span{color:var(--accent);}
-@media(max-width:680px){
-  .topbar{padding:0 1rem;}
-  .nav-btn{padding:0 9px;font-size:11.5px;}
-  .hero{padding:2.5rem 1.2rem 2rem;}
-  .main{padding:1.5rem 1rem 3rem;}
-  .al{grid-template-columns:1fr;}
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   DESIGN TOKENS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --ink:       #0d0d0d;
+  --ink-soft:  #3d3d38;
+  --ink-mute:  #8a8a82;
+  --canvas:    #f5f3ee;
+  --surface:   #ffffff;
+  --border:    #e2ddd4;
+
+  --fire:   #e8500a;   /* orange-red  — primary accent   */
+  --forest: #1b6b48;   /* deep green  — teaching         */
+  --navy:   #1a3a8f;   /* deep blue   — games/sim        */
+  --plum:   #7b1a6b;   /* plum        — sandbox          */
+  --gold:   #b87a08;   /* gold        — highlights       */
+
+  --fire-bg:   #fff3ee;
+  --forest-bg: #edf7f2;
+  --navy-bg:   #eef1fb;
+  --plum-bg:   #f8eef7;
+  --gold-bg:   #fdf6e3;
+
+  --r: 16px;
+  --rs: 9px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BASE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--canvas);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,h4,h5 { font-family: 'Syne', sans-serif; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOP ANNOUNCEMENT BAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.announce {
+  background: var(--fire);
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 1rem;
+  letter-spacing: .3px;
+}
+.announce a { color: #fff; text-decoration: underline; opacity: .9; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOPBAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.topbar {
+  background: var(--ink);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  gap: 1rem;
+}
+.brand {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: -.3px;
+  white-space: nowrap;
+}
+.brand em { color: var(--fire); font-style: normal; }
+.brand sup {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: rgba(255,255,255,.4);
+  text-transform: uppercase;
+  vertical-align: super;
+  margin-left: 3px;
+}
+.nav { display: flex; overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,.5);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0 14px;
+  height: 56px;
+  transition: color .2s;
+  white-space: nowrap;
+  position: relative;
+}
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 14px; right: 14px;
+  height: 2px;
+  background: var(--fire);
+  transform: scaleX(0);
+  transition: transform .2s;
+  border-radius: 2px 2px 0 0;
+}
+.nav-btn:hover { color: rgba(255,255,255,.85); }
+.nav-btn.active { color: #fff; }
+.nav-btn.active::after { transform: scaleX(1); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.hero {
+  background: var(--ink);
+  color: #fff;
+  padding: 5rem 2rem 0;
+  position: relative;
+  overflow: hidden;
+}
+/* Geometric accent shapes */
+.hero-geo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.geo-circle-1 {
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 520px; height: 520px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,80,10,.22) 0%, transparent 65%);
+}
+.geo-circle-2 {
+  position: absolute;
+  bottom: 20px; left: 10%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(27,107,72,.14) 0%, transparent 65%);
+}
+.geo-line {
+  position: absolute;
+  top: 0; right: 220px;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,.06), transparent);
+}
+.geo-dots {
+  position: absolute;
+  bottom: 60px; right: 60px;
+  width: 120px; height: 120px;
+  background-image: radial-gradient(circle, rgba(255,255,255,.12) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.hero-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 3.5rem;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,80,10,.15);
+  border: 1px solid rgba(232,80,10,.3);
+  color: #ff7a45;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 40px;
+  margin-bottom: 1.5rem;
+}
+.hero-pill::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--fire);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .5; transform: scale(.8); }
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+  margin-bottom: .6rem;
+}
+.hero h1 .name-accent { color: var(--fire); }
+
+.hero-role {
+  font-size: 15px;
+  color: rgba(255,255,255,.45);
+  font-weight: 300;
+  letter-spacing: .5px;
+  margin-bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.role-sep { color: rgba(255,255,255,.2); }
+
+.hero-bio {
+  font-size: 16px;
+  color: rgba(255,255,255,.72);
+  max-width: 560px;
+  line-height: 1.78;
+  margin-bottom: 2.2rem;
+}
+
+.hero-cta { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 2.5rem; }
+.btn-fire {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--fire); color: #fff;
+  border: none; padding: 11px 24px;
+  border-radius: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px; font-weight: 500;
+  text-decoration: none;
+  transition: opacity .2s, transform .15s;
+}
+.btn-fire:hover { opacity: .88; transform: translateY(-1px); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: transparent; color: rgba(255,255,255,.75);
+  border: 1px solid rgba(255,255,255,.18);
+  padding: 11px 20px;
+  border-radius: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px; font-weight: 400;
+  text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.btn-outline:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.3); }
+
+.social-links { display: flex; gap: 8px; flex-wrap: wrap; }
+.slink {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.65);
+  padding: 7px 15px;
+  border-radius: 40px;
+  font-size: 12.5px;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.slink:hover { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.25); }
+.slink-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* STATS STRIP — inside hero, bottom */
+.stats-strip {
+  background: rgba(255,255,255,.04);
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.stat-item {
+  padding: 1.4rem 1.5rem;
+  border-right: 1px solid rgba(255,255,255,.07);
+  text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: .2rem;
+}
+.stat-num span { color: var(--fire); }
+.stat-label {
+  font-size: 11.5px;
+  color: rgba(255,255,255,.42);
+  font-weight: 400;
+  letter-spacing: .3px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MAIN CONTENT AREA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.main { max-width: 1040px; margin: 0 auto; padding: 2.8rem 1.5rem 5rem; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeUp .35s ease; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(8px) } to { opacity:1; transform:translateY(0) } }
+
+/* Section heading */
+.sec-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--border);
+}
+.sec-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-pill {
+  display: inline-block;
+  width: 10px; height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.sec-more {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--fire);
+}
+.sec-more:hover { text-decoration: underline; }
+.sec-block { margin-bottom: 3.2rem; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   WHAT'S NEW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.wn-wrap {
+  background: linear-gradient(to right, #fff9f6, #f4fbf7);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--fire);
+  border-radius: var(--rs);
+  padding: 1.1rem 1.4rem;
+  margin-bottom: 2.8rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+.wn-badge {
+  background: var(--fire);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.wn-list { flex: 1; }
+.wn-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 13.5px;
+}
+.wn-item:last-child { border-bottom: none; padding-bottom: 0; }
+.wn-date { font-size: 11px; color: var(--ink-mute); white-space: nowrap; min-width: 60px; }
+.wn-text a { color: var(--fire); font-weight: 500; }
+.wn-text a:hover { text-decoration: underline; }
+.wn-text { color: var(--ink-soft); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TOOL CARDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: 18px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow .25s, transform .2s;
+  position: relative;
+}
+.card:hover { box-shadow: 0 12px 36px rgba(0,0,0,.1); transform: translateY(-3px); }
+
+.card-header {
+  padding: 1.25rem 1.4rem .9rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.card-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  margin-bottom: .9rem;
+  flex-shrink: 0;
+}
+.card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: .25rem;
+}
+.card-tagline { font-size: 12px; color: var(--ink-mute); font-style: italic; }
+.card-corner-tag {
+  position: absolute;
+  top: 1.1rem; right: 1.1rem;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.card-body { padding: 1rem 1.4rem; flex: 1; }
+.card-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+.card-desc.clamped { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+.card-footer {
+  padding: .9rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,.012);
+}
+.card-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.ctag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  letter-spacing: .3px;
+}
+.card-expand {
+  background: none; border: none;
+  font-size: 11.5px; color: var(--ink-mute);
+  font-family: 'DM Sans', sans-serif;
+  padding: 0; transition: color .15s;
+}
+.card-expand:hover { color: var(--fire); }
+.card-go {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12.5px; font-weight: 600;
+  padding: 6px 15px;
+  border-radius: 6px;
+  transition: opacity .2s;
+  color: #fff;
+}
+.card-go:hover { opacity: .85; }
+
+/* Featured badge */
+.featured-badge {
+  position: absolute;
+  top: -1px; right: 18px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 0 0 6px 6px;
+}
+
+/* Color themes per tab */
+.theme-fire .card-icon   { background: var(--fire-bg); }
+.theme-fire .card-go     { background: var(--fire); }
+.theme-fire .card-corner-tag { background: var(--fire-bg); color: var(--fire); }
+.theme-fire .ctag        { background: var(--fire-bg); color: var(--fire); }
+
+.theme-forest .card-icon { background: var(--forest-bg); }
+.theme-forest .card-go   { background: var(--forest); }
+.theme-forest .card-corner-tag { background: var(--forest-bg); color: var(--forest); }
+.theme-forest .ctag      { background: var(--forest-bg); color: var(--forest); }
+
+.theme-navy .card-icon   { background: var(--navy-bg); }
+.theme-navy .card-go     { background: var(--navy); }
+.theme-navy .card-corner-tag { background: var(--navy-bg); color: var(--navy); }
+.theme-navy .ctag        { background: var(--navy-bg); color: var(--navy); }
+
+.theme-plum .card-icon   { background: var(--plum-bg); }
+.theme-plum .card-go     { background: var(--plum); }
+.theme-plum .card-corner-tag { background: var(--plum-bg); color: var(--plum); }
+.theme-plum .ctag        { background: var(--plum-bg); color: var(--plum); }
+
+.theme-gold .card-icon   { background: var(--gold-bg); }
+.theme-gold .card-go     { background: var(--gold); }
+.theme-gold .card-corner-tag { background: var(--gold-bg); color: var(--gold); }
+.theme-gold .ctag        { background: var(--gold-bg); color: var(--gold); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BLOG CARDS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(268px, 1fr)); gap: 18px; }
+.blog-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  transition: box-shadow .25s, transform .2s;
+}
+.blog-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,.1); transform: translateY(-3px); }
+.blog-thumb { width: 100%; height: 155px; object-fit: cover; display: block; }
+.blog-thumb-ph {
+  width: 100%; height: 155px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem; font-weight: 800;
+  letter-spacing: -1px;
+}
+.blog-body { padding: 1.1rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
+.blog-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: .4rem; }
+.blog-date { font-size: 11px; color: var(--ink-mute); }
+.blog-title {
+  font-family: 'Syne', sans-serif;
+  font-size: .92rem; font-weight: 700;
+  color: var(--ink); line-height: 1.35;
+  margin-bottom: .45rem;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.blog-excerpt {
+  font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.blog-read {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: .9rem; font-size: 12px; font-weight: 600;
+  color: var(--forest);
+}
+.blog-read:hover { text-decoration: underline; }
+
+.loading-state { text-align: center; padding: 4rem 1rem; color: var(--ink-mute); grid-column: 1/-1; }
+.spinner {
+  width: 32px; height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--fire);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  margin: 0 auto 1rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ABOUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.about-grid { display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; align-items: start; }
+.about-lead { font-size: 1.55rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.1rem; letter-spacing: -.4px; }
+.about-lead span { color: var(--fire); }
+.about-body p { font-size: 15px; color: var(--ink-soft); line-height: 1.78; margin-bottom: .9rem; }
+
+.cred-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+.cred-head {
+  background: var(--ink);
+  color: #fff;
+  padding: 1rem 1.3rem;
+  font-family: 'Syne', sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+.cred-list { padding: .5rem 0; }
+.cred-row {
+  display: flex; align-items: center; gap: 11px;
+  padding: .6rem 1.3rem;
+  font-size: 13px; color: var(--ink-soft);
+  border-bottom: 1px solid var(--canvas);
+}
+.cred-row:last-child { border-bottom: none; }
+.cred-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  background: var(--canvas);
+}
+
+.connect-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 1.3rem; margin-top: 1.8rem; }
+.connect-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.connect-link {
+  display: flex; align-items: center; gap: 11px;
+  padding: 9px 13px; margin-bottom: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--rs);
+  font-size: 13.5px; color: var(--ink-soft);
+  transition: border-color .2s, background .2s;
+}
+.connect-link:last-child { margin-bottom: 0; }
+.connect-link:hover { border-color: var(--fire); background: var(--fire-bg); color: var(--ink); }
+.connect-ico {
+  width: 30px; height: 30px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   EMPTY STATE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.empty {
+  grid-column: 1/-1;
+  text-align: center; padding: 3.5rem 1rem;
+  background: var(--surface); border: 1.5px dashed var(--border);
+  border-radius: var(--r); color: var(--ink-mute);
+}
+.empty strong { display: block; font-family: 'Syne', sans-serif; font-size: 1rem; margin-bottom: .4rem; color: var(--ink-soft); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ADMIN PANEL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.adm-login { max-width: 380px; margin: 3rem auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 2rem; }
+.adm-login h3 { font-size: 1.1rem; margin-bottom: 1.2rem; text-align: center; }
+.fg { margin-bottom: 1rem; }
+.fg label { display: block; font-size: 12.5px; font-weight: 500; color: var(--ink-soft); margin-bottom: .35rem; }
+.fg input, .fg select, .fg textarea {
+  width: 100%; padding: 9px 12px;
+  border: 1px solid var(--border); border-radius: var(--rs);
+  font-family: 'DM Sans', sans-serif; font-size: 13.5px;
+  color: var(--ink); background: var(--surface); outline: none;
+  transition: border-color .2s;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--fire); }
+.fg textarea { min-height: 90px; resize: vertical; }
+.btn-sv { background: var(--forest); color: #fff; border: none; padding: 9px 22px; border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; transition: opacity .2s; }
+.btn-sv:hover { opacity: .85; }
+.btn-cx { background: var(--canvas); color: var(--ink-soft); border: 1px solid var(--border); padding: 9px 18px; border-radius: 7px; font-family: 'DM Sans', sans-serif; font-size: 13px; }
+.adm-sec { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 1.5rem; margin-bottom: 1.4rem; }
+.adm-sec h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1.1rem; display: flex; align-items: center; justify-content: space-between; }
+.btn-adm { background: var(--ink); color: #fff; border: none; padding: 7px 15px; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; }
+.btn-adm:hover { background: var(--fire); }
+.adm-list { display: flex; flex-direction: column; gap: 7px; }
+.adm-item { display: flex; align-items: center; justify-content: space-between; padding: 9px 12px; background: var(--canvas); border-radius: var(--rs); border: 1px solid var(--border); font-size: 13px; }
+.adm-btns { display: flex; gap: 5px; }
+.btn-tg { font-size: 11px; padding: 4px 10px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface); font-family: 'DM Sans', sans-serif; }
+.btn-dl { font-size: 11px; padding: 4px 10px; border-radius: 4px; border: 1px solid #fcc; background: #fff5f5; color: #c00; font-family: 'DM Sans', sans-serif; }
+.amsg { padding: .7rem 1rem; border-radius: var(--rs); font-size: 13px; margin-top: .9rem; text-align: center; }
+.a-ok { background: var(--forest-bg); color: var(--forest); }
+.a-er { background: var(--fire-bg); color: var(--fire); }
+.hidden { display: none !important; }
+.mo { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 300; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+.modal { background: var(--surface); border-radius: var(--r); padding: 1.8rem; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; }
+.modal h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 1.2rem; }
+.modal-btns { display: flex; gap: 8px; margin-top: 1.2rem; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,.3);
+  padding: 2.2rem 2rem;
+  text-align: center;
+  font-size: 12.5px;
+}
+.footer-brand {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: .4rem;
+}
+.footer-brand span { color: var(--fire); }
+.footer-sub { margin-bottom: 1rem; font-size: 12px; color: rgba(255,255,255,.3); }
+.footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.footer-links a { color: rgba(255,255,255,.45); font-size: 13px; transition: color .2s; }
+.footer-links a:hover { color: #fff; }
+.footer-copy { font-size: 11.5px; color: rgba(255,255,255,.22); }
+.footer-admin { margin-left: .8rem; opacity: .25; font-size: 11px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 700px) {
+  .topbar { padding: 0 1rem; }
+  .nav-btn { padding: 0 10px; font-size: 12px; }
+  .hero { padding: 3rem 1.2rem 0; }
+  .hero h1 { letter-spacing: -.8px; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .main { padding: 1.8rem 1rem 3.5rem; }
+  .about-grid { grid-template-columns: 1fr; }
+  .wn-wrap { flex-direction: column; gap: .7rem; }
 }
 </style>
 </head>
 <body>
 
-<!-- ╔══════════════════════════════════════════════╗
-     ║  SITE DATA — Edit here to update content     ║
-     ╚══════════════════════════════════════════════╝ -->
+<!-- ╔════════════════════════════════════════╗
+     ║  SITE DATA — Edit this block for updates ║
+     ╚════════════════════════════════════════╝ -->
 <script id="siteData" type="application/json">
 {
   "site": {
     "name": "Vishweshwar Mensumane",
     "brand": "Money Vichara",
-    "tagline": "The Mind Behind Money Vichara",
-    "subtag": "Finance Educator · Digital Creator · Tool Builder",
-    "bio": "Finance & Management educator with a passion for making money concepts click. I build interactive simulations, finance games, and learning tools that turn complex ideas into real insights. PhD | UGC NET | MBA | Blogger at Money Vichara.",
+    "tagline": "Where Finance Meets Curiosity",
+    "subtag": "Finance Educator · Digital Creator · Simulation Builder",
+    "bio": "I'm a finance educator who builds things. PhD scholar, UGC NET qualified, MBA — and a blogger with 65+ articles making personal finance feel less intimidating. I create interactive tools, games, and simulations that turn complex money concepts into hands-on experiences.",
     "bloggerUrl": "https://moneyvichara.blogspot.com",
-    "bloggerFeed": "https://moneyvichara.blogspot.com/feeds/posts/default?alt=json&max-results=99"
+    "bloggerFeed": "https://moneyvichara.blogspot.com/feeds/posts/default?alt=json&max-results=99",
+    "announceText": "🎉 New: Financial Freedom Escape Room is live — try the 15-min simulation!",
+    "announceUrl": "https://personal-finance-escape-room.vercel.app/",
+    "stats": [
+      { "num": "65", "suffix": "+", "label": "Blog Articles" },
+      { "num": "3",  "suffix": "+", "label": "Tools & Games" },
+      { "num": "10", "suffix": "yr", "label": "In Education" },
+      { "num": "∞",  "suffix": "",  "label": "Curiosity" }
+    ]
   },
   "social": [
     { "label": "LinkedIn", "url": "https://www.linkedin.com/in/vishweshwar-mensumane/", "color": "#0077b5", "visible": true },
@@ -180,6 +758,7 @@ a{color:inherit;}
       "description": "ForexLab is an interactive learning tool for foreign exchange concepts. It helps students understand quotations, arbitrage, parity, and hedging through step-by-step solutions, practical scenarios, and decision-focused insights — making complex forex problems simple, intuitive, and exam-ready.",
       "url": "http://forex-lab-zeta.vercel.app",
       "tags": ["Finance", "MBA", "Forex"],
+      "icon": "💱",
       "featured": true,
       "visible": true
     },
@@ -189,6 +768,7 @@ a{color:inherit;}
       "description": "An interactive, single-file web tool built for MBA students to learn Excel through real financial decisions — not formula memorisation. Every module connects Excel functions to actual business and finance contexts.",
       "url": "https://excel-lab.vercel.app/",
       "tags": ["Excel", "MBA", "Finance"],
+      "icon": "📊",
       "featured": true,
       "visible": true
     }
@@ -200,22 +780,30 @@ a{color:inherit;}
       "description": "Mission: Financial Freedom — a 15-minute, browser-based escape-room style simulation where participants engage with real-life financial decision scenarios (budgeting, investing, protection, and planning) under time pressure.",
       "url": "https://personal-finance-escape-room.vercel.app/",
       "tags": ["Game", "Simulation", "Planning"],
+      "icon": "🚪",
       "featured": true,
       "visible": true
     }
   ],
+  "calculators": [],
   "sandbox": []
 }
 </script>
 
-<!-- TOP BAR -->
+<!-- ANNOUNCE BAR -->
+<div class="announce" id="announceBar"></div>
+
+<!-- TOPBAR -->
 <header class="topbar">
-  <a class="topbar-brand" href="#" onclick="showTab('home');return false;">Money <span>Vichara</span></a>
+  <a class="brand" href="#" onclick="showTab('home');return false;">
+    Money <em>Vichara</em><sup>by VM</sup>
+  </a>
   <nav class="nav" id="mainNav">
     <button class="nav-btn active" onclick="showTab('home')"     data-tab="home">Home</button>
     <button class="nav-btn"        onclick="showTab('blog')"     data-tab="blog">Blog</button>
-    <button class="nav-btn"        onclick="showTab('teaching')" data-tab="teaching">Teaching Tools</button>
-    <button class="nav-btn"        onclick="showTab('games')"    data-tab="games">Games &amp; Simulations</button>
+    <button class="nav-btn"        onclick="showTab('teaching')"    data-tab="teaching">Teaching Tools</button>
+    <button class="nav-btn"        onclick="showTab('calculators')" data-tab="calculators">Calculators</button>
+    <button class="nav-btn"        onclick="showTab('games')"       data-tab="games">Games &amp; Simulations</button>
     <button class="nav-btn"        onclick="showTab('sandbox')"  data-tab="sandbox">Sandbox</button>
     <button class="nav-btn"        onclick="showTab('about')"    data-tab="about">About</button>
   </nav>
@@ -223,148 +811,182 @@ a{color:inherit;}
 
 <!-- HERO -->
 <section class="hero" id="heroSection">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">Money Vichara</div>
-    <h1 id="heroName"></h1>
-    <div class="hero-sub" id="heroSubtag"></div>
-    <p class="hero-bio" id="heroBio"></p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#" onclick="showTab('teaching');return false;">Explore Tools ↗</a>
-      <a class="btn-ghost"   href="#" onclick="showTab('blog');return false;">Read the Blog</a>
-    </div>
-    <div class="social-row" id="socialRow"></div>
+  <div class="hero-geo">
+    <div class="geo-circle-1"></div>
+    <div class="geo-circle-2"></div>
+    <div class="geo-line"></div>
+    <div class="geo-dots"></div>
   </div>
+  <div class="hero-inner">
+    <div class="hero-pill">Finance · Education · Tools</div>
+    <h1 id="heroName"></h1>
+    <div class="hero-role" id="heroRole"></div>
+    <p class="hero-bio" id="heroBio"></p>
+    <div class="hero-cta">
+      <a class="btn-fire" href="#" onclick="showTab('teaching');return false;">Explore My Tools ↗</a>
+      <a class="btn-outline" href="#" onclick="showTab('blog');return false;">Read 65+ Articles</a>
+    </div>
+    <div class="social-links" id="socialLinks"></div>
+  </div>
+  <div class="stats-strip" id="statsStrip"></div>
 </section>
 
 <!-- MAIN -->
 <main class="main">
 
-  <!-- HOME -->
+  <!-- HOME TAB -->
   <div class="tab-panel active" id="tab-home">
-    <div class="wn" id="whatsNewBlock">
-      <div class="wn-label">✦ What's New</div>
-      <div id="whatsNewItems"></div>
+    <div class="wn-wrap" id="wnWrap">
+      <div class="wn-badge">What's New</div>
+      <div class="wn-list" id="wnList"></div>
     </div>
-    <div class="sb">
-      <div class="sh">
-        <div class="st"><span class="dot"></span>Featured Tools</div>
-        <a class="sl" href="#" onclick="showTab('teaching');return false;">All Tools →</a>
+    <div class="sec-block">
+      <div class="sec-head">
+        <div class="sec-title">
+          <span class="sec-pill" style="background:var(--fire)"></span>Featured Tools
+        </div>
+        <a class="sec-more" href="#" onclick="showTab('teaching');return false;">View All →</a>
       </div>
-      <div class="cg" id="featuredGrid"></div>
+      <div class="cards" id="featuredCards"></div>
     </div>
-    <div class="sb">
-      <div class="sh">
-        <div class="st"><span class="dot" style="background:var(--accent-2)"></span>Latest from the Blog</div>
-        <a class="sl" href="#" onclick="showTab('blog');return false;">All Articles →</a>
+    <div class="sec-block">
+      <div class="sec-head">
+        <div class="sec-title">
+          <span class="sec-pill" style="background:var(--forest)"></span>Latest from the Blog
+        </div>
+        <a class="sec-more" href="#" onclick="showTab('blog');return false;">All Articles →</a>
       </div>
-      <div class="bg" id="homeBlogGrid"><div class="bload"><div class="spin"></div>Fetching latest articles…</div></div>
+      <div class="blog-grid" id="homeBlog">
+        <div class="loading-state"><div class="spinner"></div>Fetching latest articles…</div>
+      </div>
     </div>
   </div>
 
-  <!-- BLOG -->
+  <!-- BLOG TAB -->
   <div class="tab-panel" id="tab-blog">
-    <div class="sb">
-      <div class="sh">
-        <div class="st"><span class="dot" style="background:var(--accent-2)"></span>All Blog Articles</div>
-        <a class="sl" id="blogExtLink" href="https://moneyvichara.blogspot.com" target="_blank">Open on Blogger ↗</a>
+    <div class="sec-block">
+      <div class="sec-head">
+        <div class="sec-title"><span class="sec-pill" style="background:var(--forest)"></span>All Blog Articles</div>
+        <a class="sec-more" id="blogExtLink" href="https://moneyvichara.blogspot.com" target="_blank">Open on Blogger ↗</a>
       </div>
-      <div class="bg" id="fullBlogGrid"><div class="bload"><div class="spin"></div>Loading all articles…</div></div>
+      <div class="blog-grid" id="fullBlog">
+        <div class="loading-state"><div class="spinner"></div>Loading all articles…</div>
+      </div>
     </div>
   </div>
 
-  <!-- TEACHING TOOLS -->
+  <!-- TEACHING TOOLS TAB -->
   <div class="tab-panel" id="tab-teaching">
-    <div class="sb">
-      <div class="sh"><div class="st"><span class="dot" style="background:var(--accent-3)"></span>Teaching Tools &amp; Calculators</div></div>
-      <div class="cg" id="teachingGrid"></div>
+    <div class="sec-block">
+      <div class="sec-head">
+        <div class="sec-title"><span class="sec-pill" style="background:var(--navy)"></span>Teaching Tools &amp; Learning Aids</div>
+      </div>
+      <div class="cards" id="teachingCards"></div>
     </div>
   </div>
 
-  <!-- GAMES -->
+  <!-- CALCULATORS TAB -->
+  <div class="tab-panel" id="tab-calculators">
+    <div class="sec-block">
+      <div class="sec-head">
+        <div class="sec-title"><span class="sec-pill" style="background:var(--gold)"></span>Personal Finance Calculators</div>
+      </div>
+      <div class="cards" id="calcCards"></div>
+    </div>
+  </div>
+
+  <!-- GAMES TAB -->
   <div class="tab-panel" id="tab-games">
-    <div class="sb">
-      <div class="sh"><div class="st"><span class="dot" style="background:var(--accent-4)"></span>Games &amp; Simulations</div></div>
-      <div class="cg" id="gamesGrid"></div>
+    <div class="sec-block">
+      <div class="sec-head">
+        <div class="sec-title"><span class="sec-pill" style="background:var(--plum)"></span>Games &amp; Simulations</div>
+      </div>
+      <div class="cards" id="gamesCards"></div>
     </div>
   </div>
 
-  <!-- SANDBOX -->
+  <!-- SANDBOX TAB -->
   <div class="tab-panel" id="tab-sandbox">
-    <div class="sb">
-      <div class="sh"><div class="st"><span class="dot" style="background:var(--gold)"></span>Sandbox — Experiments &amp; New Ideas</div></div>
-      <div class="cg" id="sandboxGrid"></div>
+    <div class="sec-block">
+      <div class="sec-head">
+        <div class="sec-title"><span class="sec-pill" style="background:var(--gold)"></span>Sandbox — Experiments &amp; New Ideas</div>
+      </div>
+      <div class="cards" id="sandboxCards"></div>
     </div>
   </div>
 
-  <!-- ABOUT -->
+  <!-- ABOUT TAB -->
   <div class="tab-panel" id="tab-about">
-    <div class="al">
-      <div>
-        <h2>The mind behind <span>Money Vichara</span></h2>
+    <div class="about-grid">
+      <div class="about-body">
+        <h2 class="about-lead">Where <span>finance meets</span><br>curiosity &amp; craft.</h2>
         <p id="aboutBio"></p>
-        <p>I believe financial literacy shouldn't be locked behind jargon and textbooks. Through interactive simulations, escape rooms, calculators, and 65+ blog articles, I try to make personal finance intuitive — whether you're an MBA student, a working professional, or someone trying to make better money decisions.</p>
-        <p>Currently teaching Finance &amp; Management at a college in India, while building tools and writing at Money Vichara on the side. Everything here is made with care — no ads, no paywalls.</p>
-        <div class="ctblock">
+        <p>I believe financial literacy shouldn't be locked behind jargon and heavy textbooks. So I build interactive tools, write in plain language, and design simulations that make money concepts feel intuitive — whether you're an MBA student, a young professional, or simply someone who wants to understand money better.</p>
+        <p>When I'm not teaching at college, I'm building the next simulation or writing the next article for Money Vichara. Everything here is made with curiosity and care — no ads, no paywalls, just good learning.</p>
+        <div class="connect-card">
           <h4>Connect with me</h4>
-          <div id="contactLinks"></div>
+          <div id="connectLinks"></div>
         </div>
       </div>
       <div>
-        <div class="aside">
-          <h4>Credentials</h4>
-          <div class="cri"><span>🎓</span><span>PhD (pursuing) — Management</span></div>
-          <div class="cri"><span>📜</span><span>UGC NET — Qualified</span></div>
-          <div class="cri"><span>🎓</span><span>MBA — Finance &amp; Management</span></div>
-          <div class="cri"><span>🏫</span><span>Finance &amp; Management Educator</span></div>
-          <div class="cri"><span>✍️</span><span>Blogger — 65+ articles on Money Vichara</span></div>
-          <div class="cri"><span>🛠️</span><span>Tool Builder — Simulations &amp; EdTech</span></div>
-          <div class="cri"><span>🏅</span><span>Resource Person — Finance Programs</span></div>
+        <div class="cred-card">
+          <div class="cred-head">Credentials</div>
+          <div class="cred-list">
+            <div class="cred-row"><span class="cred-icon">🎓</span>PhD (pursuing) — Management</div>
+            <div class="cred-row"><span class="cred-icon">📜</span>UGC NET — Qualified</div>
+            <div class="cred-row"><span class="cred-icon">🎓</span>MBA — Finance &amp; Management</div>
+            <div class="cred-row"><span class="cred-icon">🏫</span>Finance &amp; Management Educator</div>
+            <div class="cred-row"><span class="cred-icon">✍️</span>65+ Blog Articles — Money Vichara</div>
+            <div class="cred-row"><span class="cred-icon">🛠️</span>Tool Builder — EdTech &amp; Simulations</div>
+            <div class="cred-row"><span class="cred-icon">🏅</span>Resource Person — Finance Programs</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ADMIN -->
+  <!-- ADMIN TAB -->
   <div class="tab-panel" id="tab-admin">
     <div id="adminLoginWrap">
       <div class="adm-login">
         <h3>🔒 Admin Panel</h3>
         <div class="fg">
           <label>Password</label>
-          <input type="password" id="adminPwd" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')adminLogin()">
+          <input type="password" id="adminPwd" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()">
         </div>
-        <button class="bsv" onclick="adminLogin()">Sign In</button>
+        <button class="btn-sv" onclick="doLogin()">Sign In</button>
         <div id="loginMsg"></div>
       </div>
     </div>
-
     <div id="adminPanel" class="hidden">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
-        <h2 style="font-size:1.3rem;">Admin Panel</h2>
-        <button class="bcl" onclick="adminLogout()">Sign Out</button>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem">
+        <h2 style="font-size:1.3rem">Admin Panel</h2>
+        <button class="btn-cx" onclick="doLogout()">Sign Out</button>
       </div>
-
-      <div class="asec">
-        <h3>What's New <button class="badd" onclick="openModal('news')">+ Add Update</button></h3>
-        <div class="alist" id="adminNewsList"></div>
+      <div class="adm-sec">
+        <h3>What's New <button class="btn-adm" onclick="openM('news')">+ Add</button></h3>
+        <div class="adm-list" id="al-news"></div>
       </div>
-      <div class="asec">
-        <h3>Teaching Tools <button class="badd" onclick="openModal('teaching')">+ Add Tool</button></h3>
-        <div class="alist" id="adminTeachingList"></div>
+      <div class="adm-sec">
+        <h3>Teaching Tools <button class="btn-adm" onclick="openM('teaching')">+ Add Tool</button></h3>
+        <div class="adm-list" id="al-teaching"></div>
       </div>
-      <div class="asec">
-        <h3>Games &amp; Simulations <button class="badd" onclick="openModal('games')">+ Add Game</button></h3>
-        <div class="alist" id="adminGamesList"></div>
+      <div class="adm-sec">
+        <h3>Calculators <button class="btn-adm" onclick="openM('calculators')">+ Add Calculator</button></h3>
+        <div class="adm-list" id="al-calculators"></div>
       </div>
-      <div class="asec">
-        <h3>Sandbox <button class="badd" onclick="openModal('sandbox')">+ Add Project</button></h3>
-        <div class="alist" id="adminSandboxList"></div>
+      <div class="adm-sec">
+        <h3>Games &amp; Simulations <button class="btn-adm" onclick="openM('games')">+ Add Game</button></h3>
+        <div class="adm-list" id="al-games"></div>
       </div>
-
-      <div class="asec" style="background:#fff9f6;border-color:#fad0be;">
-        <h3 style="color:var(--accent);font-size:.95rem;">💾 Save &amp; Export</h3>
-        <p style="font-size:13px;color:var(--ink-soft);margin-bottom:1rem;">Download the updated HTML file with all your changes baked in. Then upload this single file to GitHub to publish your updates.</p>
-        <button class="bsv" onclick="exportPage()">Download Updated index.html</button>
+      <div class="adm-sec">
+        <h3>Sandbox <button class="btn-adm" onclick="openM('sandbox')">+ Add Project</button></h3>
+        <div class="adm-list" id="al-sandbox"></div>
+      </div>
+      <div class="adm-sec" style="background:var(--fire-bg);border-color:#fad0be">
+        <h3 style="color:var(--fire);font-size:.95rem">💾 Save &amp; Export</h3>
+        <p style="font-size:13px;color:var(--ink-soft);margin-bottom:1rem">When you're done making changes, download the updated file and upload it to GitHub to publish.</p>
+        <button class="btn-sv" onclick="doExport()">Download Updated index.html</button>
         <div id="exportMsg"></div>
       </div>
     </div>
@@ -373,309 +995,422 @@ a{color:inherit;}
 </main>
 
 <!-- MODAL -->
-<div class="moverlay hidden" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+<div class="mo hidden" id="modalBg" onclick="if(event.target===this)closeM()">
   <div class="modal">
-    <h3 id="modalTitle">Add Item</h3>
-    <div id="modalBody"></div>
-    <div class="adas" style="margin-top:1.2rem;">
-      <button class="bsv" onclick="saveModal()">Save</button>
-      <button class="bcl" onclick="closeModal()">Cancel</button>
+    <h3 id="mTitle">Add Item</h3>
+    <div id="mBody"></div>
+    <div class="modal-btns">
+      <button class="btn-sv" onclick="saveM()">Save</button>
+      <button class="btn-cx" onclick="closeM()">Cancel</button>
     </div>
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer class="footer">
-  &copy; 2026 <span>Vishweshwar Mensumane</span> &middot; Money Vichara &middot; Built with purpose, not profit.
-  <span style="margin-left:1rem;opacity:.35;cursor:pointer;font-size:11px;" onclick="showTab('admin')" title="Admin">&#9881;</span>
+  <div class="footer-brand">Money <span>Vichara</span></div>
+  <div class="footer-sub">Finance Education · Tools · Simulations · Blog</div>
+  <div class="footer-links" id="footerLinks"></div>
+  <div class="footer-copy">
+    © 2026 Vishweshwar Mensumane · Built with curiosity, not capital.
+    <span class="footer-admin" onclick="showTab('admin')" title="Admin" style="cursor:pointer">⚙</span>
+  </div>
 </footer>
 
 <script>
-// ═══════════════════════════════════
-// DATA
-// ═══════════════════════════════════
+/* ═══════════════════════════════════════
+   DATA & INIT
+═══════════════════════════════════════ */
 let D = JSON.parse(document.getElementById('siteData').textContent);
 
 window.addEventListener('DOMContentLoaded', () => {
-  renderHero();
-  renderWhatsNew();
-  renderFeaturedTools();
-  renderToolGrids();
+  renderPage();
   fetchBlog();
 });
 
-// ── HERO ──
+function renderPage() {
+  renderAnnounce();
+  renderHero();
+  renderStats();
+  renderWhatsNew();
+  renderFeatured();
+  renderGrids();
+  renderAbout();
+  renderFooter();
+}
+
+/* ── ANNOUNCE BAR ── */
+function renderAnnounce() {
+  const s = D.site;
+  if (s.announceText) {
+    document.getElementById('announceBar').innerHTML =
+      s.announceUrl ? s.announceText + ' <a href="' + s.announceUrl + '" target="_blank">Try it →</a>' : s.announceText;
+  } else {
+    document.getElementById('announceBar').style.display = 'none';
+  }
+}
+
+/* ── HERO ── */
 function renderHero() {
   const s = D.site;
   document.title = s.brand + ' — ' + s.name;
-  document.getElementById('heroName').textContent = s.name;
-  document.getElementById('heroSubtag').textContent = s.subtag;
+  document.getElementById('heroName').innerHTML = s.name.replace(' ', '&nbsp;');
   document.getElementById('heroBio').textContent = s.bio;
   document.getElementById('aboutBio').textContent = s.bio;
   document.getElementById('blogExtLink').href = s.bloggerUrl;
 
-  const sr = document.getElementById('socialRow');
-  sr.innerHTML = '';
-  D.social.filter(x=>x.visible).forEach(s=>{
-    const a = document.createElement('a');
-    a.className='social-chip'; a.href=s.url; a.target='_blank'; a.rel='noopener';
-    a.textContent=s.label; sr.appendChild(a);
-  });
+  // Role pills
+  const parts = s.subtag.split(' · ');
+  document.getElementById('heroRole').innerHTML = parts.map((p, i) =>
+    (i > 0 ? '<span class="role-sep">·</span>' : '') + p
+  ).join('');
 
-  const cl = document.getElementById('contactLinks');
-  cl.innerHTML = '';
-  D.social.filter(x=>x.visible).forEach(s=>{
+  // Social
+  const sl = document.getElementById('socialLinks');
+  sl.innerHTML = '';
+  D.social.filter(x => x.visible).forEach(s => {
     const a = document.createElement('a');
-    a.className='ctlnk'; a.href=s.url; a.target='_blank'; a.rel='noopener';
-    a.innerHTML = '<span class="cico" style="background:'+s.color+'">'+s.label.slice(0,2).toUpperCase()+'</span>'+s.label;
-    cl.appendChild(a);
+    a.className = 'slink'; a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
+    a.innerHTML = '<span class="slink-dot" style="background:' + s.color + '"></span>' + s.label;
+    sl.appendChild(a);
   });
 }
 
-// ── WHAT'S NEW ──
+/* ── STATS ── */
+function renderStats() {
+  const strip = document.getElementById('statsStrip');
+  strip.innerHTML = '';
+  (D.site.stats || []).forEach(s => {
+    strip.innerHTML += '<div class="stat-item">'
+      + '<div class="stat-num">' + s.num + '<span>' + s.suffix + '</span></div>'
+      + '<div class="stat-label">' + s.label + '</div>'
+      + '</div>';
+  });
+}
+
+/* ── WHAT'S NEW ── */
 function renderWhatsNew() {
-  const c = document.getElementById('whatsNewItems');
-  c.innerHTML = '';
-  (D.whatsNew||[]).filter(x=>x.visible).forEach(item=>{
-    c.innerHTML += '<div class="ni"><span class="nd">'+item.date+'</span><span class="nt"><a href="'+item.url+'" target="_blank">'+item.text+'</a></span></div>';
+  const list = document.getElementById('wnList');
+  list.innerHTML = '';
+  (D.whatsNew || []).filter(x => x.visible).forEach(item => {
+    list.innerHTML += '<div class="wn-item">'
+      + '<span class="wn-date">' + item.date + '</span>'
+      + '<span class="wn-text"><a href="' + item.url + '" target="_blank">' + item.text + '</a></span>'
+      + '</div>';
   });
 }
 
-// ── CARDS ──
-const COLORS = ['a','b','c','d','e'];
-const TAG_CLS = ['ta','tb','tc2','td','te'];
+/* ── CARDS ── */
+const THEMES = ['theme-fire', 'theme-forest', 'theme-navy', 'theme-plum'];
+const ICONS_DEFAULT = ['📘', '🧮', '🎮', '🔬', '📈', '💡'];
 let ci = 0;
 
-function makeCard(tool) {
-  const c = COLORS[ci % COLORS.length];
-  const tc = TAG_CLS[ci % TAG_CLS.length];
-  ci++;
-  const tags = (tool.tags||[]).map(t=>'<span class="tag '+tc+'">'+t+'</span>').join('');
-  const id = 'cd'+Math.random().toString(36).slice(2);
+function makeCard(tool, theme) {
+  const t = theme || THEMES[ci % THEMES.length]; ci++;
+  const tags = (tool.tags || []).map(tag => '<span class="ctag">' + tag + '</span>').join('');
+  const icon = tool.icon || ICONS_DEFAULT[ci % ICONS_DEFAULT.length];
+  const id = 'desc_' + Math.random().toString(36).slice(2);
+  const featured = tool.featured ? '<div class="featured-badge">Featured</div>' : '';
+
   const div = document.createElement('div');
-  div.className = 'tc c'+c;
-  div.innerHTML = '<div class="ctags">'+tags+'</div>'
-    +'<div class="cn">'+tool.name+'</div>'
-    +'<div class="ctag">'+(tool.tagline||'')+'</div>'
-    +'<div class="cd2 sh2" id="'+id+'">'+tool.description+'</div>'
-    +'<div class="cf">'
-    +'<button class="cm" onclick="toggleDesc(\''+id+'\',this)">More &#9662;</button>'
-    +'<a class="cl2" href="'+tool.url+'" target="_blank" rel="noopener">Explore &#8599;</a>'
-    +'</div>';
+  div.className = 'card ' + t;
+  div.innerHTML = featured
+    + '<div class="card-header">'
+    + '<div class="card-icon">' + icon + '</div>'
+    + '<div class="card-name">' + tool.name + '</div>'
+    + '<div class="card-tagline">' + (tool.tagline || '') + '</div>'
+    + '</div>'
+    + '<div class="card-body">'
+    + '<div class="card-desc clamped" id="' + id + '">' + tool.description + '</div>'
+    + '</div>'
+    + '<div class="card-footer">'
+    + '<div class="card-tags">' + tags + '</div>'
+    + '<button class="card-expand" onclick="toggleDesc(\'' + id + '\',this)">More ▾</button>'
+    + '</div>'
+    + '<div style="padding:.9rem 1.4rem;padding-top:0">'
+    + '<a class="card-go" href="' + tool.url + '" target="_blank" rel="noopener">Open Tool ↗</a>'
+    + '</div>';
   return div;
 }
 
 function toggleDesc(id, btn) {
   const el = document.getElementById(id);
-  const closed = el.classList.toggle('sh2');
-  btn.innerHTML = closed ? 'More &#9662;' : 'Less &#9652;';
+  el.classList.toggle('clamped');
+  btn.innerHTML = el.classList.contains('clamped') ? 'More ▾' : 'Less ▴';
 }
 
-function renderFeaturedTools() {
-  const g = document.getElementById('featuredGrid');
-  g.innerHTML=''; ci=0;
-  const f = [...(D.teachingTools||[]),...(D.gamesSimulations||[])].filter(t=>t.featured&&t.visible);
-  if(!f.length){g.innerHTML='<div class="empty"><strong>Coming soon</strong>Featured tools will appear here.</div>';return;}
-  f.forEach(t=>g.appendChild(makeCard(t)));
+function renderFeatured() {
+  const g = document.getElementById('featuredCards');
+  g.innerHTML = ''; ci = 0;
+  const f = [...(D.teachingTools || []), ...(D.gamesSimulations || [])].filter(t => t.featured && t.visible);
+  if (!f.length) { g.innerHTML = '<div class="empty"><strong>Coming soon</strong>Featured tools will appear here.</div>'; return; }
+  f.forEach(t => g.appendChild(makeCard(t)));
 }
 
-function renderToolGrids() {
-  renderGrid('teachingGrid', D.teachingTools, 'Teaching tools and calculators will appear here.');
-  renderGrid('gamesGrid', D.gamesSimulations, 'Games and simulations will appear here.');
-  renderGrid('sandboxGrid', D.sandbox, 'Experimental projects will land here. Watch this space.');
+function renderGrids() {
+  renderGrid('teachingCards', D.teachingTools, 'theme-navy', 'Teaching tools will appear here.');
+  renderGrid('calcCards', D.calculators, 'theme-gold', 'Personal finance calculators will appear here.');
+  renderGrid('gamesCards', D.gamesSimulations, 'theme-plum', 'Games and simulations will appear here.');
+  renderGrid('sandboxCards', D.sandbox, 'theme-forest', 'Experimental projects will land here. Watch this space.');
 }
 
-function renderGrid(id, data, msg) {
-  const g=document.getElementById(id); g.innerHTML=''; ci=0;
-  const items=(data||[]).filter(t=>t.visible);
-  if(!items.length){g.innerHTML='<div class="empty"><strong>Coming soon</strong>'+msg+'</div>';return;}
-  items.forEach(t=>g.appendChild(makeCard(t)));
+function renderGrid(id, data, theme, msg) {
+  const g = document.getElementById(id);
+  g.innerHTML = ''; ci = 0;
+  const items = (data || []).filter(t => t.visible);
+  if (!items.length) { g.innerHTML = '<div class="empty"><strong>Coming soon</strong>' + msg + '</div>'; return; }
+  items.forEach(t => g.appendChild(makeCard(t, theme)));
 }
 
-// ═══════════════════════════════════
-// BLOG — BLOGGER JSON FEED
-// ═══════════════════════════════════
-let blogPosts=[], blogLoaded=false;
-
-async function fetchBlog() {
-  if(blogLoaded) return;
-  try {
-    const res = await fetch(D.site.bloggerFeed);
-    if(!res.ok) throw new Error('status '+res.status);
-    const json = await res.json();
-    const entries = json.feed?.entry || [];
-    blogPosts = entries.map(e=>{
-      const title = e.title?.$t || 'Untitled';
-      const link = (e.link?.find(l=>l.rel==='alternate'))?.href || '#';
-      const raw = e.content?.$t || e.summary?.$t || '';
-      const plain = raw.replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();
-      const summary = plain.slice(0,160)+(plain.length>160?'…':'');
-      const published = e.published?.$t ? new Date(e.published.$t).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}) : '';
-      let image = '';
-      if(e['media$thumbnail']?.url) image = e['media$thumbnail'].url.replace(/\/s\d+-c\//,'/s400-c/');
-      if(!image){ const m=raw.match(/<img[^>]+src=["']([^"']+)["']/i); if(m) image=m[1]; }
-      return {title,link,summary,published,image};
-    });
-    blogLoaded=true;
-    renderHomeBlog();
-    renderFullBlog();
-  } catch(err) {
-    const fb='<div class="bempty">Could not load articles automatically.<br><a href="'+D.site.bloggerUrl+'" target="_blank" style="color:var(--accent);font-weight:500;">Visit Money Vichara on Blogger &#8599;</a></div>';
-    document.getElementById('homeBlogGrid').innerHTML=fb;
-    document.getElementById('fullBlogGrid').innerHTML=fb;
-  }
+/* ── ABOUT ── */
+function renderAbout() {
+  const cl = document.getElementById('connectLinks');
+  cl.innerHTML = '';
+  D.social.filter(x => x.visible).forEach(s => {
+    const a = document.createElement('a');
+    a.className = 'connect-link'; a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
+    a.innerHTML = '<span class="connect-ico" style="background:' + s.color + '">' + s.label.slice(0, 2).toUpperCase() + '</span>' + s.label;
+    cl.appendChild(a);
+  });
 }
+
+/* ── FOOTER ── */
+function renderFooter() {
+  const fl = document.getElementById('footerLinks');
+  fl.innerHTML = '';
+  D.social.filter(x => x.visible).forEach(s => {
+    fl.innerHTML += '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.label + '</a>';
+  });
+}
+
+/* ═══════════════════════════════════════
+   BLOG — JSONP (bypasses CORS completely)
+═══════════════════════════════════════ */
+let blogPosts = [], blogLoaded = false;
+
+// Blogger calls this function with the feed data
+function handleBlogFeed(data) {
+  const entries = data.feed?.entry || [];
+  blogPosts = entries.map(e => {
+    const title = e.title?.$t || 'Untitled';
+    const link = (e.link?.find(l => l.rel === 'alternate'))?.href || '#';
+    const raw = e.content?.$t || e.summary?.$t || '';
+    const plain = raw.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    const summary = plain.slice(0, 160) + (plain.length > 160 ? '…' : '');
+    const published = e.published?.$t
+      ? new Date(e.published.$t).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
+      : '';
+    let image = '';
+    if (e['media$thumbnail']?.url) image = e['media$thumbnail'].url.replace(/\/s\d+-c\//, '/s400-c/');
+    if (!image) { const m = raw.match(/<img[^>]+src=["']([^"']+)["']/i); if (m) image = m[1]; }
+    return { title, link, summary, published, image };
+  });
+  blogLoaded = true;
+  renderHomeBlog();
+  renderFullBlog();
+}
+
+function fetchBlog() {
+  if (blogLoaded) return;
+
+  // Set a timeout — if JSONP doesn't fire in 8s show fallback
+  const timer = setTimeout(() => {
+    if (!blogLoaded) showBlogFallback();
+  }, 8000);
+
+  // JSONP: inject script tag — Blogger will call handleBlogFeed() with the data
+  const script = document.createElement('script');
+  script.src = 'https://moneyvichara.blogspot.com/feeds/posts/default'
+    + '?alt=json-in-script&callback=handleBlogFeed&max-results=99';
+  script.onerror = () => { clearTimeout(timer); showBlogFallback(); };
+  document.head.appendChild(script);
+}
+
+function showBlogFallback() {
+  const fb = '<div class="loading-state">Could not load articles automatically.<br>'
+    + '<a href="' + D.site.bloggerUrl + '" target="_blank" style="color:var(--fire);font-weight:600">'
+    + 'Visit Money Vichara on Blogger ↗</a></div>';
+  document.getElementById('homeBlog').innerHTML = fb;
+  document.getElementById('fullBlog').innerHTML = fb;
+}
+
+// Placeholder color palettes for blog cards
+const BG_PALETTES = [
+  ['#1a3a8f','#fff'],['#1b6b48','#fff'],['#e8500a','#fff'],
+  ['#7b1a6b','#fff'],['#b87a08','#fff'],['#2c5f8a','#fff']
+];
+let bgi = 0;
 
 function makeBlogCard(post) {
-  const div=document.createElement('div'); div.className='bc';
-  const img = post.image
-    ? '<img class="bt" src="'+post.image+'" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=\\\'bp\\\'>MV</div>\'">'
-    : '<div class="bp">MV</div>';
-  div.innerHTML=img+'<div class="bb"><div class="bdate">'+post.published+'</div><div class="btitle">'+post.title+'</div><div class="bex">'+post.summary+'</div><a class="br" href="'+post.link+'" target="_blank" rel="noopener">Read article &#8594;</a></div>';
+  const div = document.createElement('div');
+  div.className = 'blog-card';
+  const pal = BG_PALETTES[bgi % BG_PALETTES.length]; bgi++;
+
+  let imgHtml;
+  if (post.image) {
+    imgHtml = '<img class="blog-thumb" src="' + post.image + '" alt="" loading="lazy" '
+      + 'onerror="this.outerHTML=\'<div class=\\\'blog-thumb-ph\\\' style=\\\'background:' + pal[0] + ';color:' + pal[1] + '\\\'>MV</div>\'">';
+  } else {
+    imgHtml = '<div class="blog-thumb-ph" style="background:' + pal[0] + ';color:' + pal[1] + '">MV</div>';
+  }
+
+  div.innerHTML = imgHtml
+    + '<div class="blog-body">'
+    + '<div class="blog-meta"><span class="blog-date">' + post.published + '</span></div>'
+    + '<div class="blog-title">' + post.title + '</div>'
+    + '<div class="blog-excerpt">' + post.summary + '</div>'
+    + '<a class="blog-read" href="' + post.link + '" target="_blank" rel="noopener">Read article →</a>'
+    + '</div>';
   return div;
 }
 
 function renderHomeBlog() {
-  const g=document.getElementById('homeBlogGrid'); g.innerHTML='';
-  blogPosts.slice(0,3).forEach(p=>g.appendChild(makeBlogCard(p)));
+  const g = document.getElementById('homeBlog'); g.innerHTML = ''; bgi = 0;
+  blogPosts.slice(0, 3).forEach(p => g.appendChild(makeBlogCard(p)));
 }
-
 function renderFullBlog() {
-  const g=document.getElementById('fullBlogGrid'); g.innerHTML='';
-  blogPosts.forEach(p=>g.appendChild(makeBlogCard(p)));
+  const g = document.getElementById('fullBlog'); g.innerHTML = ''; bgi = 0;
+  blogPosts.forEach(p => g.appendChild(makeBlogCard(p)));
 }
 
-// ═══════════════════════════════════
-// TABS
-// ═══════════════════════════════════
+/* ═══════════════════════════════════════
+   TAB NAVIGATION
+═══════════════════════════════════════ */
 function showTab(name) {
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+name)?.classList.add('active');
-  document.querySelector('[data-tab="'+name+'"]')?.classList.add('active');
-  document.getElementById('heroSection').style.display = name==='home'?'':'none';
-  if(name==='blog'&&!blogLoaded) fetchBlog();
-  if(name==='admin') renderAdminLists();
-  window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name)?.classList.add('active');
+  document.querySelector('[data-tab="' + name + '"]')?.classList.add('active');
+  document.getElementById('heroSection').style.display = name === 'home' ? '' : 'none';
+  if (name === 'blog' && !blogLoaded) fetchBlog();
+  if (name === 'calculators') renderGrid('calcCards', D.calculators, 'theme-gold', 'Personal finance calculators will appear here.');
+  if (name === 'admin') renderAdminLists();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ═══════════════════════════════════
-// ADMIN
-// ═══════════════════════════════════
-const PWD='moneyvichara2026';
-let loggedIn=false, modalCtx=null, editIdx=null;
+/* ═══════════════════════════════════════
+   ADMIN PANEL
+═══════════════════════════════════════ */
+const PWD = 'moneyvichara2026';
+let loggedIn = false, mCtx = null, mEditIdx = null;
 
-function adminLogin() {
-  if(document.getElementById('adminPwd').value===PWD){
-    loggedIn=true;
+function doLogin() {
+  if (document.getElementById('adminPwd').value === PWD) {
+    loggedIn = true;
     document.getElementById('adminLoginWrap').classList.add('hidden');
     document.getElementById('adminPanel').classList.remove('hidden');
     renderAdminLists();
   } else {
-    document.getElementById('loginMsg').innerHTML='<div class="amsg aer">Incorrect password.</div>';
+    document.getElementById('loginMsg').innerHTML = '<div class="amsg a-er">Incorrect password.</div>';
   }
 }
-
-function adminLogout() {
-  loggedIn=false;
+function doLogout() {
+  loggedIn = false;
   document.getElementById('adminLoginWrap').classList.remove('hidden');
   document.getElementById('adminPanel').classList.add('hidden');
-  document.getElementById('adminPwd').value='';
+  document.getElementById('adminPwd').value = '';
 }
 
 function getArr(t) {
-  if(t==='news') return D.whatsNew;
-  if(t==='teaching') return D.teachingTools;
-  if(t==='games') return D.gamesSimulations;
-  return D.sandbox;
+  return t === 'news' ? D.whatsNew
+    : t === 'teaching' ? D.teachingTools
+    : t === 'calculators' ? D.calculators
+    : t === 'games' ? D.gamesSimulations
+    : D.sandbox;
 }
 
 function renderAdminLists() {
-  if(!loggedIn) return;
-  ['news','teaching','games','sandbox'].forEach(t=>{
-    const id={news:'adminNewsList',teaching:'adminTeachingList',games:'adminGamesList',sandbox:'adminSandboxList'}[t];
-    const c=document.getElementById(id); c.innerHTML='';
-    const arr=getArr(t);
-    if(!arr||!arr.length){c.innerHTML='<div style="font-size:13px;color:var(--ink-mute);padding:.4rem 0">No items yet.</div>';return;}
-    arr.forEach((item,i)=>{
-      const name=item.name||item.text||'Item '+(i+1);
-      c.innerHTML+='<div class="aitm"><span style="font-weight:500;font-size:13px">'+name+'</span>'
-        +'<div class="aiact">'
-        +'<button class="btg" onclick="toggleItem(\''+t+'\','+i+')">'+(item.visible?'Hide':'Show')+'</button>'
-        +'<button class="btg" onclick="editItem(\''+t+'\','+i+')">Edit</button>'
-        +'<button class="bdl" onclick="deleteItem(\''+t+'\','+i+')">Delete</button>'
-        +'</div></div>';
+  if (!loggedIn) return;
+  ['news', 'teaching', 'calculators', 'games', 'sandbox'].forEach(t => {
+    const el = document.getElementById('al-' + t);
+    if (!el) return;
+    el.innerHTML = '';
+    const arr = getArr(t);
+    if (!arr || !arr.length) { el.innerHTML = '<p style="font-size:13px;color:var(--ink-mute);padding:.3rem 0">No items yet.</p>'; return; }
+    arr.forEach((item, i) => {
+      el.innerHTML += '<div class="adm-item">'
+        + '<span style="font-weight:500">' + (item.name || item.text || 'Item ' + (i + 1)) + '</span>'
+        + '<div class="adm-btns">'
+        + '<button class="btn-tg" onclick="toggleItm(\'' + t + '\',' + i + ')">' + (item.visible ? 'Hide' : 'Show') + '</button>'
+        + '<button class="btn-tg" onclick="editItm(\'' + t + '\',' + i + ')">Edit</button>'
+        + '<button class="btn-dl" onclick="delItm(\'' + t + '\',' + i + ')">Delete</button>'
+        + '</div></div>';
     });
   });
 }
 
-function toggleItem(t,i){getArr(t)[i].visible=!getArr(t)[i].visible;renderAdminLists();refreshGrids();}
-function deleteItem(t,i){if(!confirm('Delete?'))return;getArr(t).splice(i,1);renderAdminLists();refreshGrids();}
-function editItem(t,i){editIdx=i;openModal(t,getArr(t)[i]);}
+function toggleItm(t, i) { getArr(t)[i].visible = !getArr(t)[i].visible; renderAdminLists(); refreshAll(); }
+function delItm(t, i) { if (!confirm('Delete this item?')) return; getArr(t).splice(i, 1); renderAdminLists(); refreshAll(); }
+function editItm(t, i) { mEditIdx = i; openM(t, getArr(t)[i]); }
 
-function openModal(type, ex) {
-  modalCtx=type; if(!ex) editIdx=null;
-  document.getElementById('modalOverlay').classList.remove('hidden');
-  if(type==='news') {
-    document.getElementById('modalTitle').textContent=ex?'Edit Update':'Add What\'s New';
-    document.getElementById('modalBody').innerHTML=
-      '<div class="fg"><label>Text</label><input type="text" id="f_text" value="'+(ex?.text||'')+'" placeholder="Describe the update"></div>'
-      +'<div class="fg"><label>URL</label><input type="text" id="f_url" value="'+(ex?.url||'')+'" placeholder="https://..."></div>'
-      +'<div class="fg"><label>Date</label><input type="text" id="f_date" value="'+(ex?.date||'')+'" placeholder="e.g. May 2026"></div>';
+function openM(type, ex) {
+  mCtx = type; if (!ex) mEditIdx = null;
+  document.getElementById('modalBg').classList.remove('hidden');
+  if (type === 'news') {
+    document.getElementById('mTitle').textContent = ex ? 'Edit Update' : "Add What's New";
+    document.getElementById('mBody').innerHTML =
+      '<div class="fg"><label>Text</label><input type="text" id="f_text" value="' + (ex?.text || '') + '" placeholder="Describe the update"></div>'
+      + '<div class="fg"><label>URL</label><input type="text" id="f_url" value="' + (ex?.url || '') + '" placeholder="https://..."></div>'
+      + '<div class="fg"><label>Date</label><input type="text" id="f_date" value="' + (ex?.date || '') + '" placeholder="e.g. May 2026"></div>';
   } else {
-    document.getElementById('modalTitle').textContent=ex?'Edit Tool':'Add New Tool';
-    document.getElementById('modalBody').innerHTML=
-      '<div class="fg"><label>Name</label><input type="text" id="f_name" value="'+(ex?.name||'')+'" placeholder="Tool name"></div>'
-      +'<div class="fg"><label>One-line tagline</label><input type="text" id="f_tagline" value="'+(ex?.tagline||'')+'" placeholder="Short catchy line"></div>'
-      +'<div class="fg"><label>Description (300–500 chars)</label><textarea id="f_desc">'+(ex?.description||'')+'</textarea></div>'
-      +'<div class="fg"><label>Live URL</label><input type="text" id="f_url" value="'+(ex?.url||'')+'" placeholder="https://your-tool.vercel.app"></div>'
-      +'<div class="fg"><label>Tags (comma separated)</label><input type="text" id="f_tags" value="'+((ex?.tags||[]).join(', '))+'" placeholder="Finance, MBA, Calculator"></div>'
-      +'<div class="fg"><label>Show on homepage?</label><select id="f_feat"><option value="true"'+(ex?.featured?' selected':'')+'>Yes — feature on homepage</option><option value="false"'+(!ex?.featured?' selected':'')+'>No</option></select></div>';
+    document.getElementById('mTitle').textContent = ex ? 'Edit Tool' : 'Add New Tool';
+    document.getElementById('mBody').innerHTML =
+      '<div class="fg"><label>Name</label><input type="text" id="f_name" value="' + (ex?.name || '') + '" placeholder="Tool name"></div>'
+      + '<div class="fg"><label>Icon (emoji)</label><input type="text" id="f_icon" value="' + (ex?.icon || '') + '" placeholder="e.g. 📊 or 🎮"></div>'
+      + '<div class="fg"><label>One-line tagline</label><input type="text" id="f_tagline" value="' + (ex?.tagline || '') + '" placeholder="Short catchy line"></div>'
+      + '<div class="fg"><label>Description (300–500 chars)</label><textarea id="f_desc">' + (ex?.description || '') + '</textarea></div>'
+      + '<div class="fg"><label>Live URL</label><input type="text" id="f_url" value="' + (ex?.url || '') + '" placeholder="https://your-tool.vercel.app"></div>'
+      + '<div class="fg"><label>Tags (comma separated)</label><input type="text" id="f_tags" value="' + ((ex?.tags || []).join(', ')) + '" placeholder="Finance, MBA, Calculator"></div>'
+      + '<div class="fg"><label>Feature on homepage?</label><select id="f_feat"><option value="true"' + (ex?.featured ? ' selected' : '') + '>Yes</option><option value="false"' + (!ex?.featured ? ' selected' : '') + '>No</option></select></div>';
   }
 }
 
-function saveModal() {
-  const arr=getArr(modalCtx);
+function saveM() {
+  const arr = getArr(mCtx);
   let item;
-  if(modalCtx==='news') {
-    const text=document.getElementById('f_text').value.trim();
-    if(!text){alert('Please enter text.');return;}
-    item={text,url:document.getElementById('f_url').value.trim(),date:document.getElementById('f_date').value.trim(),visible:true};
+  if (mCtx === 'news') {
+    const text = document.getElementById('f_text').value.trim();
+    if (!text) { alert('Please enter text.'); return; }
+    item = { text, url: document.getElementById('f_url').value.trim(), date: document.getElementById('f_date').value.trim(), visible: true };
   } else {
-    const name=document.getElementById('f_name').value.trim();
-    const url=document.getElementById('f_url').value.trim();
-    if(!name||!url){alert('Name and URL are required.');return;}
-    item={
-      name,
-      tagline:document.getElementById('f_tagline').value.trim(),
-      description:document.getElementById('f_desc').value.trim(),
+    const name = document.getElementById('f_name').value.trim();
+    const url = document.getElementById('f_url').value.trim();
+    if (!name || !url) { alert('Name and URL are required.'); return; }
+    item = {
+      name, icon: document.getElementById('f_icon').value.trim() || '📘',
+      tagline: document.getElementById('f_tagline').value.trim(),
+      description: document.getElementById('f_desc').value.trim(),
       url,
-      tags:document.getElementById('f_tags').value.split(',').map(t=>t.trim()).filter(Boolean),
-      featured:document.getElementById('f_feat').value==='true',
-      visible:true
+      tags: document.getElementById('f_tags').value.split(',').map(t => t.trim()).filter(Boolean),
+      featured: document.getElementById('f_feat').value === 'true',
+      visible: true
     };
   }
-  if(editIdx!==null) arr[editIdx]=item; else arr.push(item);
-  closeModal(); renderAdminLists(); refreshGrids();
+  if (mEditIdx !== null) arr[mEditIdx] = item; else arr.push(item);
+  closeM(); renderAdminLists(); refreshAll();
+}
+function closeM() { document.getElementById('modalBg').classList.add('hidden'); mEditIdx = null; mCtx = null; }
+
+function refreshAll() {
+  ci = 0;
+  renderWhatsNew();
+  renderFeatured();
+  renderGrids();
+  renderAnnounce();
 }
 
-function closeModal(){document.getElementById('modalOverlay').classList.add('hidden');editIdx=null;modalCtx=null;}
-
-function refreshGrids(){ci=0;renderFeaturedTools();renderToolGrids();renderWhatsNew();}
-
-// ── EXPORT — embed updated data into HTML and download ──
-function exportPage() {
+/* ── EXPORT ── */
+function doExport() {
   const newData = JSON.stringify(D, null, 2);
   let html = document.documentElement.outerHTML;
   html = html.replace(
     /(<script id="siteData" type="application\/json">)([\s\S]*?)(<\/script>)/,
-    '$1\n'+newData+'\n$3'
+    '$1\n' + newData + '\n$3'
   );
-  const blob = new Blob([html], {type:'text/html'});
+  const blob = new Blob([html], { type: 'text/html' });
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'index.html';
-  a.click();
-  document.getElementById('exportMsg').innerHTML = '<div class="amsg aok">&#10003; Downloaded! Upload this file to GitHub to publish.</div>';
+  a.href = URL.createObjectURL(blob); a.download = 'index.html'; a.click();
+  document.getElementById('exportMsg').innerHTML = '<div class="amsg a-ok">✓ Downloaded! Upload to GitHub to publish.</div>';
 }
 </script>
 </body>
