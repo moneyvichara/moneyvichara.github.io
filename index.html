@@ -1853,12 +1853,17 @@ async function publishToGitHub() {
     const headData = await headRes.json();
     const sha = headData.sha;
 
-    // Step 2: Build updated HTML with new data baked in
-    document.getElementById('publishMsg').innerHTML = '';
+    // Step 2: Build updated HTML — clear any status messages first
+    const newData = JSON.stringify(D, null, 2);
+btn.disabled = false;
+btn.textContent = 'Publish Changes Live →';
+document.getElementById('publishMsg').innerHTML = '';
 document.getElementById('exportMsg').innerHTML = '';
 document.getElementById('setupMsg').innerHTML = '';
-     const newData = JSON.stringify(D, null, 2);
-    let html = document.documentElement.outerHTML;
+const loginMsg = document.getElementById('loginMsg');
+if (loginMsg) loginMsg.innerHTML = '';
+await new Promise(r => setTimeout(r, 80));
+let html = document.documentElement.outerHTML;
     html = html.replace(
       /(<script id="siteData" type="application\/json">)([\s\S]*?)(<\/script>)/,
       '$1\n' + newData + '\n$3'
@@ -1905,6 +1910,11 @@ document.getElementById('setupMsg').innerHTML = '';
 
 // ── EMERGENCY DOWNLOAD (backup) ──
 function doExport() {
+  document.getElementById('publishMsg').innerHTML = '';
+  document.getElementById('exportMsg').innerHTML = '';
+  document.getElementById('setupMsg').innerHTML = '';
+  const btn = document.getElementById('publishBtn');
+  if (btn) btn.textContent = 'Publish Changes Live →';
   const newData = JSON.stringify(D, null, 2);
   let html = document.documentElement.outerHTML;
   html = html.replace(
