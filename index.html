@@ -1854,7 +1854,10 @@ async function publishToGitHub() {
     const sha = headData.sha;
 
     // Step 2: Build updated HTML with new data baked in
-    const newData = JSON.stringify(D, null, 2);
+    document.getElementById('publishMsg').innerHTML = '';
+document.getElementById('exportMsg').innerHTML = '';
+document.getElementById('setupMsg').innerHTML = '';
+     const newData = JSON.stringify(D, null, 2);
     let html = document.documentElement.outerHTML;
     html = html.replace(
       /(<script id="siteData" type="application\/json">)([\s\S]*?)(<\/script>)/,
