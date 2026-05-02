@@ -465,7 +465,23 @@ button { cursor: pointer; }
   position: relative;
 }
 .card:hover { box-shadow: 0 12px 36px rgba(0,0,0,.1); transform: translateY(-3px); }
-.card::before {
+.card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; border-radius:var(--r) var(--r) 0 0; }
+.theme-fire::before { background:var(--fire); }
+.theme-forest::before { background:var(--forest); }
+.theme-navy::before { background:var(--navy); }
+.theme-plum::before { background:var(--plum); }
+.theme-gold::before { background:var(--gold); }
+.theme-fire { border-left:3px solid var(--fire); }
+.theme-forest { border-left:3px solid var(--forest); }
+.theme-navy { border-left:3px solid var(--navy); }
+.theme-plum { border-left:3px solid var(--plum); }
+.theme-gold { border-left:3px solid var(--gold); }
+.theme-fire:hover { box-shadow:0 12px 36px rgba(232,80,10,.15); }
+.theme-forest:hover { box-shadow:0 12px 36px rgba(27,107,72,.15); }
+.theme-navy:hover { box-shadow:0 12px 36px rgba(26,58,143,.15); }
+.theme-plum:hover { box-shadow:0 12px 36px rgba(123,26,107,.15); }
+.theme-gold:hover { box-shadow:0 12px 36px rgba(184,122,8,.15); }
+   .card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
