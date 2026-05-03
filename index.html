@@ -797,6 +797,149 @@ button { cursor: pointer; }
   .about-grid { grid-template-columns: 1fr; }
   .wn-wrap { flex-direction: column; gap: .7rem; }
 }
+   /* ── SEARCH ── */
+.search-wrap {
+  position: relative;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.search-input {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  padding: 6px 36px 6px 14px;
+  border-radius: 20px;
+  outline: none;
+  width: 180px;
+  transition: width .3s, background .2s;
+}
+.search-input::placeholder { color: rgba(255,255,255,.4); }
+.search-input:focus {
+  width: 240px;
+  background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.35);
+}
+.search-icon {
+  position: absolute;
+  right: 11px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  opacity: .5;
+  pointer-events: none;
+}
+.search-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(2px);
+}
+.search-overlay.open { display: flex; align-items: flex-start; justify-content: center; padding-top: 80px; }
+.search-box {
+  background: var(--surface);
+  border-radius: var(--r);
+  width: 100%;
+  max-width: 640px;
+  max-height: 75vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+  margin: 0 1rem;
+}
+.search-box-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 1;
+}
+.search-box-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--ink);
+  background: transparent;
+}
+.search-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: var(--ink-mute);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+}
+.search-close:hover { color: var(--ink); }
+.search-results { padding: .5rem 0; }
+.search-empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--ink-mute);
+  font-size: 14px;
+}
+.search-group-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  padding: .6rem 1.25rem .3rem;
+}
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: .7rem 1.25rem;
+  cursor: pointer;
+  transition: background .15s;
+  text-decoration: none;
+  color: inherit;
+}
+.search-result-item:hover { background: var(--canvas); }
+.search-result-icon {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.search-result-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1px;
+}
+.search-result-meta {
+  font-size: 11.5px;
+  color: var(--ink-mute);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.search-result-divider {
+  height: 1px;
+  background: var(--border);
+  margin: .25rem 0;
+}
+mark {
+  background: #fff3c4;
+  color: var(--ink);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+@media (max-width: 700px) {
+  .search-input { width: 130px; }
+  .search-input:focus { width: 160px; }
+}
 </style>
 </head>
 <body>
@@ -1215,6 +1358,25 @@ button { cursor: pointer; }
     <button class="nav-btn"        onclick="showTab('sandbox')"  data-tab="sandbox">Sandbox</button>
     <button class="nav-btn"        onclick="showTab('about')"    data-tab="about">About</button>
   </nav>
+   <div class="search-wrap">
+    <input class="search-input" type="text" placeholder="🔍 Search…" onfocus="openSearch(this.value)" oninput="openSearch(this.value)" />
+    <span class="search-icon">⌕</span>
+  </div>
+</header>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay" onclick="if(event.target===this)closeSearch()">
+  <div class="search-box">
+    <div class="search-box-header">
+      <span style="font-size:18px">🔍</span>
+      <input class="search-box-input" id="searchBoxInput" type="text" placeholder="Search articles, tools, calculators…" oninput="runSearch(this.value)" />
+      <button class="search-close" onclick="closeSearch()">×</button>
+    </div>
+    <div class="search-results" id="searchResults">
+      <div class="search-empty">Start typing to search across everything…</div>
+    </div>
+  </div>
+</div>
 </header>
 
 <!-- HERO -->
@@ -1669,7 +1831,107 @@ function renderGrid(id, data, theme, msg) {
   if (!items.length) { g.innerHTML = '<div class="empty"><strong>Coming soon</strong>' + msg + '</div>'; return; }
   items.forEach(t => g.appendChild(makeCard(t, theme)));
 }
+/* ═══════════════════════════════════════
+   SEARCH
+═══════════════════════════════════════ */
+function openSearch(val) {
+  document.getElementById('searchOverlay').classList.add('open');
+  const box = document.getElementById('searchBoxInput');
+  box.value = val || '';
+  setTimeout(() => box.focus(), 50);
+  runSearch(val || '');
+}
 
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('open');
+  // Also clear the topbar input
+  const topInput = document.querySelector('.search-input');
+  if (topInput) topInput.value = '';
+}
+
+// Close on Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSearch(); });
+
+function highlight(text, query) {
+  if (!query || !text) return text || '';
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>');
+}
+
+function runSearch(query) {
+  const q = (query || '').trim().toLowerCase();
+  const container = document.getElementById('searchResults');
+  if (!q || q.length < 2) {
+    container.innerHTML = '<div class="search-empty">Start typing to search across everything…</div>';
+    return;
+  }
+
+  const results = { tools: [], blog: [] };
+
+  // Search all tool arrays
+  const toolSections = [
+    { arr: D.teachingTools || [], label: 'Teaching Tool', color: 'var(--navy-bg)', textColor: 'var(--navy)', tab: 'teaching' },
+    { arr: D.calculators || [], label: 'Calculator', color: 'var(--gold-bg)', textColor: 'var(--gold)', tab: 'calculators' },
+    { arr: D.gamesSimulations || [], label: 'Game / Simulation', color: 'var(--plum-bg)', textColor: 'var(--plum)', tab: 'games' },
+    { arr: D.sandbox || [], label: 'Sandbox', color: 'var(--forest-bg)', textColor: 'var(--forest)', tab: 'sandbox' }
+  ];
+
+  toolSections.forEach(section => {
+    section.arr.filter(t => t.visible).forEach(tool => {
+      const searchable = ((tool.name || '') + ' ' + (tool.tagline || '') + ' ' + (tool.description || '') + ' ' + (tool.tags || []).join(' ')).toLowerCase();
+      if (searchable.includes(q)) {
+        results.tools.push({ ...tool, _label: section.label, _color: section.color, _textColor: section.textColor, _tab: section.tab });
+      }
+    });
+  });
+
+  // Search blog posts
+  if (blogLoaded) {
+    blogPosts.forEach(post => {
+      const searchable = ((post.title || '') + ' ' + (post.summary || '')).toLowerCase();
+      if (searchable.includes(q)) results.blog.push(post);
+    });
+  }
+
+  const total = results.tools.length + results.blog.length;
+  if (total === 0) {
+    container.innerHTML = '<div class="search-empty">No results found for "<strong>' + query + '</strong>"</div>';
+    return;
+  }
+
+  let html = '';
+
+  if (results.tools.length) {
+    html += '<div class="search-group-label">Tools, Calculators & Games</div>';
+    results.tools.forEach(tool => {
+      html += '<a class="search-result-item" href="' + tool.url + '" target="_blank" rel="noopener" onclick="closeSearch()">'
+        + '<div class="search-result-icon" style="background:' + tool._color + ';color:' + tool._textColor + '">' + (tool.icon || '📘') + '</div>'
+        + '<div><div class="search-result-name">' + highlight(tool.name, query) + '</div>'
+        + '<div class="search-result-meta">' + tool._label + ' · ' + highlight(tool.tagline || tool.description?.slice(0,80) || '', query) + '</div></div>'
+        + '</a>';
+    });
+  }
+
+  if (results.tools.length && results.blog.length) {
+    html += '<div class="search-result-divider"></div>';
+  }
+
+  if (results.blog.length) {
+    html += '<div class="search-group-label">Blog Articles (' + results.blog.length + ')</div>';
+    results.blog.slice(0, 8).forEach(post => {
+      html += '<a class="search-result-item" href="' + post.link + '" target="_blank" rel="noopener" onclick="closeSearch()">'
+        + '<div class="search-result-icon" style="background:var(--forest-bg);color:var(--forest)">✍</div>'
+        + '<div><div class="search-result-name">' + highlight(post.title, query) + '</div>'
+        + '<div class="search-result-meta">' + post.published + ' · ' + highlight(post.summary?.slice(0, 80) || '', query) + '</div></div>'
+        + '</a>';
+    });
+    if (results.blog.length > 8) {
+      html += '<div style="text-align:center;padding:.75rem;font-size:12.5px;color:var(--ink-mute)">' + (results.blog.length - 8) + ' more articles match — refine your search</div>';
+    }
+  }
+
+  container.innerHTML = html;
+}
 /* ── ABOUT ── */
 function renderAbout() {
   // connectLinks and aboutBuilding are populated by renderHero
