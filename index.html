@@ -1359,7 +1359,7 @@ mark {
     <button class="nav-btn"        onclick="showTab('about')"    data-tab="about">About</button>
   </nav>
    <div class="search-wrap">
-    <input class="search-input" type="search" placeholder="🔍 Search…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onfocus="openSearch(this.value)" oninput="openSearch(this.value)" />
+    <input type="password" style="display:none" aria-hidden="true" /><input class="search-input" type="search" placeholder="🔍 Search…" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" onfocus="openSearch(this.value)" oninput="openSearch(this.value)" />
     <span class="search-icon">⌕</span>
   </div>
 </header>
@@ -1369,7 +1369,7 @@ mark {
   <div class="search-box">
     <div class="search-box-header">
       <span style="font-size:18px">🔍</span>
-      <input class="search-box-input" id="searchBoxInput" type="search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search articles, tools, calculators…" oninput="runSearch(this.value)" />
+      <input type="password" style="display:none" aria-hidden="true" /><input class="search-box-input" id="searchBoxInput" type="search" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search articles, tools, calculators…" oninput="runSearch(this.value)" />
       <button class="search-close" onclick="closeSearch()">×</button>
     </div>
     <div class="search-results" id="searchResults">
