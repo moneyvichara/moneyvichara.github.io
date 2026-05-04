@@ -2237,7 +2237,17 @@ function openM(type, ex) {
     document.getElementById('mTitle').textContent = ex ? 'Edit Tool' : 'Add New Tool';
     document.getElementById('mBody').innerHTML =
       '<div class="fg"><label>Name</label><input type="text" id="f_name" value="'+(ex?.name||'')+'" placeholder="Tool name"></div>'
-      +'<div class="fg"><label>Icon (emoji)</label><input type="text" id="f_icon" value="'+(ex?.icon||'')+'" placeholder="e.g. 📊 or 🎮"></div>'
+     +'<div class="fg"><label>Icon</label>'
++'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:.5rem">'
++'<span id="iconPreview" style="font-size:2rem;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--canvas);border-radius:10px;border:1px solid var(--border)">'+(ex?.icon||'📘')+'</span>'
++'<input type="hidden" id="f_icon" value="'+(ex?.icon||'📘')+'">'
++'</div>'
++'<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:.4rem">'
++['🎓','📊','💱','🧮','🎮','🔬','🚪','🌱','⚗️','📋','📈','🏆','💡','🏅','📘','🔑','📐','🎯','💰','🧩'].map(em =>
+  '<button type="button" onclick="selectIcon(\''+em+'\')" style="font-size:1.4rem;width:38px;height:38px;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer;transition:transform .15s" onmouseover="this.style.transform=\'scale(1.2)\'" onmouseout="this.style.transform=\'scale(1)\'">'
+  +em+'</button>'
+).join('')
++'</div></div>'
       +'<div class="fg"><label>One-line tagline</label><input type="text" id="f_tagline" value="'+(ex?.tagline||'')+'" placeholder="Short catchy line"></div>'
       +'<div class="fg"><label>Description (300–500 chars)</label><textarea id="f_desc">'+(ex?.description||'')+'</textarea></div>'
       +'<div class="fg"><label>Live URL</label><input type="text" id="f_url" value="'+(ex?.url||'')+'" placeholder="https://your-tool.vercel.app"></div>'
@@ -2245,7 +2255,10 @@ function openM(type, ex) {
       +'<div class="fg"><label>Feature on homepage?</label><select id="f_feat"><option value="true"'+(ex?.featured?' selected':'')+'>Yes</option><option value="false"'+(!ex?.featured?' selected':'')+'>No</option></select></div>';
   }
 }
-
+function selectIcon(emoji) {
+  document.getElementById('f_icon').value = emoji;
+  document.getElementById('iconPreview').textContent = emoji;
+}
 function saveM() {
   const arr = getArr(mCtx);
   let item;
