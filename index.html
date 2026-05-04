@@ -873,7 +873,11 @@ button { cursor: pointer; }
   /* FLOATING SEARCH BUTTON — visible only on mobile */
   .fab-search { display: flex; }
 }
-
+/* Hide floating button on desktop */
+@media (min-width: 701px) {
+  .fab-search { display: none; }
+  .search-wrap { display: block; }
+}
 /* Extra small phones */
 @media (max-width: 380px) {
   .nav-btn { padding: 0 7px; font-size: 11px; }
@@ -1025,7 +1029,7 @@ mark {
 }
    /* ── FLOATING SEARCH BUTTON (mobile only) ── */
 .fab-search {
-  display: none;
+  display: flex;
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
