@@ -876,7 +876,10 @@ button { cursor: pointer; }
 /* Hide floating button on desktop */
 @media (min-width: 701px) {
   .fab-search { display: none; }
-  .search-wrap { display: block; }
+}
+
+@media (max-width: 700px) {
+  .search-wrap { display: none; }
 }
 /* Extra small phones */
 @media (max-width: 380px) {
